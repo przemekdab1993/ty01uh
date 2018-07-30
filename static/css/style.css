@@ -1,0 +1,95 @@
+body
+{
+	background-color: #000;
+	color: #fff;
+	margin: 0px;
+	font-size: 18px;
+}
+a
+{
+	text-decoration: none;
+	display: block;
+	color: #fff;
+}
+span.gold
+{
+	color: #ffcc00;
+}
+span.red_span
+{
+	color: red;
+}
+#logo
+{
+	width: 100%;
+	height: 60px;
+	background-color: #004d38;
+	padding: 20px;
+	font-weight: 900;
+}
+#text_logo
+{
+	margin-left: 6%;
+	font-size: 56px;
+	text-transform: uppercase;
+}
+#menu 
+{
+	width: 100%;
+	margin-top: 16px;
+	text-align: center;
+	border-top: 8px double #003325;
+}
+#menu ul
+{
+	margin: 0px;
+	padding: none;
+	background-color: #004d38;
+	font-size: 20px;
+}
+#menu ul li
+{
+	list-style-type: none;
+	display: inline-block;
+}
+#menu a
+{
+	padding:10px 40px;
+	transition: background-color 1.6s, color 0.5s;
+}
+#menu  a:hover
+{
+	background-color: #003c27;
+	color: #ffcc00;
+}
+#main_container
+{
+	width: 80%;
+	max-width: 1200px;
+	min-height: 400px;
+	margin: 30px auto 0px auto;
+	
+}
+.sorce_container
+{
+	padding: 40px;
+	text-align: center;
+	border-radius: 12px;
+	background-color: #004d38;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+footer
+{
+	text-align: center;
+}
