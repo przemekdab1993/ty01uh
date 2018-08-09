@@ -9,7 +9,8 @@
   
   <link rel="stylesheet" href="static/css/style.css" type="text/css" />
   <script type="text/javascript" src="static/javascript/jquery-3.3.1.min.js"></script>
-  
+  {% block header_X %}
+  {% endblock %}
 
   <title>{{the_title}}</title>
 </head>
@@ -17,17 +18,17 @@
 <body>
 	<header>
 		<div id="logo">
-			<div id="text_logo"><span class="gold">s</span>uccess</div>
+			<div id="text_logo"><span class="gold">S</span>mall Farm</div>
 		</div>
 	</header>
 	<nav>
 		<div id="menu">
 			<ul>
 				<li><a href="/">Home</a></li>
+				<li><a href="/items">Items</a></li>
+				<li><a href="#">Shop</a></li>
 				<li><a href="#">Missions</a></li>
-				<li><a href="#">Story</a></li>
-				<li><a href="#">Items</a></li>
-				<li><a href="/login">Log</a></li>
+				<li><a href="/login">{{the_log}}</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -38,7 +39,7 @@
 		</div>
 	</main>
 	<footer>
-		Przemysław Dąbrowski &copy; 2018 v 0.0.1
+		Przemysław Dąbrowski &copy; 2018 v 0.1
 	</footer>
 	
 	

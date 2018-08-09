@@ -1,0 +1,55 @@
+.sorce_container
+{
+	padding: 2%;
+}
+#background_game
+{
+	background-color: #392613;
+	height: 580px;
+	width: 80%;
+	overflow: scroll;
+	float: left;
+}
+#fild
+{
+	
+	width: 840px;
+	height: 672px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.fild_box
+{
+	width: 80px;
+	height: 80px;
+	background-color: rgba(153, 153, 102, 0.2);
+	border-radius: 20px;
+	margin: 2px;
+}
+#menu_game
+{
+	float: left;
+	min-width: 120px;
+	height: 550px;
+	margin-left: 10px;
+	padding: 15px;
+	background-color: #004d00;
+}
+.button_game_off
+{
+	display: block;
+	padding: 13px 5px;
+	text-align: center;
+	width: 100px;
+	margin: 3px auto;
+	font-size: 20px;
+	border-radius: 20px;
+	outline: none;
+	color: #fff;
+	background: linear-gradient(to bottom right, #006600, #003300);
+	border-color: #003300 #006600;
+}
+.button_game_off:hover
+{
+	border-color: #003300 #006600 red;
+}
