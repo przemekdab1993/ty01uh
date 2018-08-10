@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, json, jsonify
 from datetime import datetime
-import jinja2
 from connectDB import DBco
+from random import randint
 import time
-import urllib3
 
 app = Flask(__name__)
 
@@ -25,13 +24,18 @@ def check_status(func):
 	if 'loged_in' in session:
 		return func()
 	else:
-		return render_template('login.html', the_title=session['next_page'], the_log='Login')
+		return render_template('login.html', the_title='Login', the_log='Login')
 		
 @app.route('/')
 def hello() -> 'html':
 	""" STRONA GŁÓWNA """
 	if 'loged_in' in session:
-		return render_template('my_home.html', the_title='MY_Home', the_log='Logout')
+		with DBco(dbconfig) as cursor:
+			_SQL = """SELECT * FROM fields_user WHERE user_ID = (%s); """
+			cursor.execute(_SQL, (session['user_id'],))
+			res = cursor.fetchall()
+		colb = json.dumps(res)
+		return render_template('my_home.html', the_title='Tak', the_log='Logout', the_src_base=res)
 	else:
 		return render_template('home.html', the_title='Home', the_log='Login')
 	
@@ -52,7 +56,7 @@ def login() -> 'html':
 	passwd = request.form['password']
 	
 	with DBco(dbconfig) as cursor:
-		_SQL1 = """SELECT id FROM user WHERE user_name = (%s) AND passwd = (%s) """
+		_SQL1 = """SELECT user_ID FROM user_game WHERE user_name = (%s) AND user_password = (%s) """
 		
 		cursor.execute(_SQL1, (user, passwd))
 		res = cursor.fetchall()
@@ -77,7 +81,7 @@ def viewsLog() -> str:
 	""" Pokazanie pliku log """
 	with open('log/save.log') as log:
 		const = log.readlines()
-		return '////////////////'.join(const)
+		return '|-#-|'.join(const)
 @app.route('/registration')
 def regist() -> 'html':
 	""" STRONA REJESTRACJI NOWEGO URZYTKOWNIKA """
@@ -90,6 +94,7 @@ def test() -> str:
 	bed_letter = ['ą', 'ę', 'ó', 'ł', 'ć', 'ż', 'ź', '/', ',', '.', ';', ':']
 	user_name = request.form['user_name']
 	passwd = request.form['password']
+	email =request.form['email']
 	
 	"""Sprawdzanie user_name """
 	if (len(user_name) < 3) or (len(user_name) > 24):
@@ -98,15 +103,38 @@ def test() -> str:
 		if i in bed_letter:
 			flag = False
 	with DBco(dbconfig) as cursor:
-		_SQL = """SELECT id FROM user WHERE user_name = (%s) AND passwd = (%s) """
-		
-		
-		
+		_SQL = """SELECT user_ID FROM user_game WHERE user_name = (%s) """
+		cursor.execute(_SQL, (user_name,))
+		res = cursor.fetchall()
+	res_len = len(res)		
+	if res_len > 0:
+		flag = False
 		
 	if flag == True:
 		with DBco(dbconfig) as cursor:
-			_SQL = """INSERT INTO user (user_name, passwd, lvl, experience, silver_coins, gold_coins) VALUES (%s, %s, %s, %s, %s, %s)"""
-			cursor.execute(_SQL, (request.form['user_name'], request.form['password'], '1', '100', '1', '1'))
+			_SQL = """INSERT INTO user_game (user_name, user_password, email, lvl, experience, silver_coins, gold_coins, premium_day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+			cursor.execute(_SQL, (user_name, passwd, email, '1', '0', '1', '1', '7'))
+		with DBco(dbconfig) as cursor:
+			_SQL1 = """SELECT user_ID FROM user_game WHERE user_name = (%s) and user_password = (%s)"""
+			cursor.execute(_SQL1, (user_name, passwd))
+			kont = cursor.fetchall()
+			user_ID = kont[0][0]
+			
+			maps = []
+			for i in range(81):
+				maps.append('TRAWA')
+			for i in range(20):
+				rand = randint(0, 80)
+				maps[rand] = 'KRZEW'
+			for i in range(15):
+				rand = randint(0, 80)
+				maps[rand] = 'KAMIEŃ'
+			for i in range(10):
+				rand = randint(0, 80)
+				maps[rand] = 'KONAR'
+			for rote in range(0, 80, 1):
+				_SQLX = """INSERT INTO fields_user (user_ID, krotka_ID, krotka_name) VALUES (%s, %s, %s);"""
+				cursor.execute(_SQLX, (user_ID, rote, maps[rote]))
 		return "succces"
 	else:
 		return "failed"
