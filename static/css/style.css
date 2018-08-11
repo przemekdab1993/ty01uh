@@ -44,7 +44,7 @@ span.red_span
 #menu ul
 {
 	margin: 0px;
-	padding: none;
+	padding: 0px;
 	background-color: #006600;
 	font-size: 20px;
 }

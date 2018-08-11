@@ -8,8 +8,8 @@
 
 	<div class="sorce_container">
 		<div id="background_game">
-			<div id="fild">
-				{% for krotka in the_src_base %}<div class="fild_box" id="f{{ krotka[1] }}">{{ krotka[2] }}</div>{% endfor %}
+			<div id="field">
+				{% for krotka in the_src_base %}<div class="field_box" id="f{{ krotka[1] }}">{{ krotka[6] }}</div>{% endfor %}
 				
 			</div>
 		</div>
@@ -24,5 +24,6 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div>
+	<script src="static/javascript/fun_game.js" type="text/javascript"></script>
 
 {% endblock %}

@@ -10,7 +10,7 @@
 	overflow: scroll;
 	float: left;
 }
-#fild
+#field
 {
 	
 	width: 840px;
@@ -18,7 +18,7 @@
 	display: flex;
 	flex-wrap: wrap;
 }
-.fild_box
+.field_box
 {
 	width: 80px;
 	height: 80px;
@@ -30,18 +30,17 @@
 {
 	float: left;
 	min-width: 120px;
-	height: 550px;
-	margin-left: 10px;
-	padding: 15px;
+	height: 540px;
+	padding: 20px;
 	background-color: #004d00;
 }
 .button_game_off
 {
 	display: block;
-	padding: 13px 5px;
+	padding: 15px 15px;
 	text-align: center;
-	width: 100px;
-	margin: 3px auto;
+	width: 120px;
+	margin: 2px auto;
 	font-size: 20px;
 	border-radius: 20px;
 	outline: none;
@@ -51,5 +50,11 @@
 }
 .button_game_off:hover
 {
-	border-color: #003300 #006600 red;
+	color: #ffcc00;
+}
+.button_game_on
+{
+	border-color: #003300 #006600 red ;
+	background: linear-gradient(to bottom right, #005500, #002200);
+	color: #ffcc00;
 }

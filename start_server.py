@@ -31,11 +31,10 @@ def hello() -> 'html':
 	""" STRONA GŁÓWNA """
 	if 'loged_in' in session:
 		with DBco(dbconfig) as cursor:
-			_SQL = """SELECT * FROM fields_user WHERE user_ID = (%s); """
+			_SQL = """SELECT * FROM (fields_user, content_krotka) WHERE user_ID = (%s) AND fields_user.content_ID = content_krotka.content_ID ORDER BY krotka_ID; """
 			cursor.execute(_SQL, (session['user_id'],))
 			res = cursor.fetchall()
-		colb = json.dumps(res)
-		return render_template('my_home.html', the_title='Tak', the_log='Logout', the_src_base=res)
+		return render_template('my_home.html', the_title=res, the_log='Logout', the_src_base=res)
 	else:
 		return render_template('home.html', the_title='Home', the_log='Login')
 	
@@ -112,8 +111,8 @@ def test() -> str:
 		
 	if flag == True:
 		with DBco(dbconfig) as cursor:
-			_SQL = """INSERT INTO user_game (user_name, user_password, email, lvl, experience, silver_coins, gold_coins, premium_day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-			cursor.execute(_SQL, (user_name, passwd, email, '1', '0', '1', '1', '7'))
+			_SQL = """INSERT INTO user_game (user_name, user_password, email, action_punkts, lvl, experience, silver_coins, gold_coins, premium_day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+			cursor.execute(_SQL, (user_name, passwd, email, '15', '1', '0', '1', '1', '7'))
 		with DBco(dbconfig) as cursor:
 			_SQL1 = """SELECT user_ID FROM user_game WHERE user_name = (%s) and user_password = (%s)"""
 			cursor.execute(_SQL1, (user_name, passwd))
@@ -122,19 +121,19 @@ def test() -> str:
 			
 			maps = []
 			for i in range(81):
-				maps.append('TRAWA')
+				maps.append('1')
 			for i in range(20):
 				rand = randint(0, 80)
-				maps[rand] = 'KRZEW'
+				maps[rand] = '2'
 			for i in range(15):
 				rand = randint(0, 80)
-				maps[rand] = 'KAMIEŃ'
+				maps[rand] = '3'
 			for i in range(10):
 				rand = randint(0, 80)
-				maps[rand] = 'KONAR'
+				maps[rand] = '4'
 			for rote in range(0, 80, 1):
-				_SQLX = """INSERT INTO fields_user (user_ID, krotka_ID, krotka_name) VALUES (%s, %s, %s);"""
-				cursor.execute(_SQLX, (user_ID, rote, maps[rote]))
+				_SQLX = """INSERT INTO fields_user (user_ID, krotka_ID, content_ID, counter) VALUES (%s, %s, %s, %s);"""
+				cursor.execute(_SQLX, (user_ID, rote, maps[rote] , '1'))
 		return "succces"
 	else:
 		return "failed"
