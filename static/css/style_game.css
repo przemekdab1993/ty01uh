@@ -1,3 +1,5 @@
+/* STYLE GRY  */
+
 .sorce_container
 {
 	padding: 2%;
@@ -32,6 +34,7 @@
 	height: 80px;
 }
 #menu_game
+/* MENU NARZĘDZI */
 {
 	float: left;
 	min-width: 120px;
@@ -39,7 +42,8 @@
 	padding: 20px;
 	background-color: #004d00;
 }
-.button_game_off
+.button_game_off 
+/* NIE AKTYWNY PRZYCISK NARZĘDZI */
 {
 	display: block;
 	padding: 15px 15px;
@@ -58,6 +62,7 @@
 	color: #ffcc00;
 }
 .button_game_on
+/* AKTYWNY PRZYCISK NARZĘDZI */
 {
 	border-color: #003300 #006600 red ;
 	background: linear-gradient(to bottom right, #005500, #002200);

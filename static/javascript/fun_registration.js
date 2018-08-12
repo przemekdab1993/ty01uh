@@ -1,3 +1,6 @@
+// Skrypt do formularza rejestracyjnego nowego użytkownika
+// sprawdzanie poprawności wypełnianych input'ów
+
 $text_box = $(':input:not(:submit):not(:checkbox)');
 $(function() {
 	$text_box.on('focusout', function(e) {

@@ -1,3 +1,6 @@
+// Skrypt do formlarza logowania urzytkownika
+// sprawdzanie poprawności wypełnianych input'ów
+
 var flag_user, flag_pass;
 var $submit = $('form');
 var $input_user = $('#user_name');

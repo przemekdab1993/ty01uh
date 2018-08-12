@@ -31,12 +31,14 @@ def check_status(func):
 def hello() -> 'html':
 	""" STRONA GŁÓWNA """
 	if 'loged_in' in session:
+		""" Jeśli jesteś zalogowany  """
 		with DBco(dbconfig) as cursor:
 			_SQL = """SELECT * FROM (fields_user, content_krotka) WHERE user_ID = (%s) AND fields_user.content_ID = content_krotka.content_ID ORDER BY krotka_ID; """
 			cursor.execute(_SQL, (session['user_id'],))
 			res = cursor.fetchall()
-		return render_template('my_home.html', the_title=res, the_log='Logout', the_src_base=res)
+		return render_template('my_home.html', the_title='My home', the_log='Logout', the_src_base=res)
 	else:
+		""" Jeśli nie jesteś zalogowany  """
 		return render_template('home.html', the_title='Home', the_log='Login')
 	
 @app.route('/login')
@@ -112,6 +114,7 @@ def test() -> str:
 		flag = False
 		
 	if flag == True:
+		""" TWORZENIE NOWEGO UŻYTKOWNIKA W BAZIE I IMPLEMENTACJA ZASOBÓW """
 		with DBco(dbconfig) as cursor:
 			_SQL = """INSERT INTO user_game (user_name, user_password, email, action_punkts, lvl, experience, silver_coins, gold_coins, premium_day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 			cursor.execute(_SQL, (user_name, passwd, email, '15', '1', '0', '1', '1', '7'))
@@ -141,7 +144,8 @@ def test() -> str:
 		return "failed"
 @app.route('/items')
 def viev_items() -> 'html':
-	def views():
+	""" STRONA MAGAZYNU PRZEDMIOTÓW """
+	def views() -> str:
 		return "Tak jesteś zalogowany"
 	
 	return check_status(views)
