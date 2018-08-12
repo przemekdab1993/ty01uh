@@ -4,23 +4,11 @@ var $input_user = $('#user_name');
 var $input_pass = $('#password');
 
 
-function chackPass() {
-	if( this.val() == '')
-	{
-		flag_pass = false;
-		$('#span_' + this.name).text("Podaj hasło");
-	} else 
-	{
-		flag_pass = true;
-		$('#span_' + this.name).text("");
-	}
-}
-
 $( function() {
 	flag_user = true;
 	flag_pass = false;
 	
-	$input_user.on('change', function(e) {
+	$input_user.on('focusout', function(e) {
 		let target = e.target;
 		if( $(target).val() == '')
 		{
@@ -40,7 +28,7 @@ $( function() {
 		}
 	});
 
-	$input_pass.on('change', function(e) {
+	$input_pass.on('focusout', function(e) {
 		let target = e.target;
 		if( $(target).val() == '')
 		{

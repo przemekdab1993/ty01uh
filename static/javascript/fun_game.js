@@ -1,7 +1,7 @@
 $( function() {
-	if (!($('.field_box').length))
+	if ($('.field_box').length < 80)
 	{
-		$('#fild').text("Przepraszamy za utrudnienia");
+		$('#field').text("Przepraszamy za utrudnienia");
 	}
 	
 	$('.button_game_off').on('click', function(e) {

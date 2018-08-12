@@ -26,6 +26,11 @@
 	border-radius: 20px;
 	margin: 2px;
 }
+.field_box img
+{
+	width: 80px;
+	height: 80px;
+}
 #menu_game
 {
 	float: left;

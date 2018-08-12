@@ -26,6 +26,7 @@ def check_status(func):
 	else:
 		return render_template('login.html', the_title='Login', the_log='Login')
 		
+		
 @app.route('/')
 def hello() -> 'html':
 	""" STRONA GŁÓWNA """
@@ -73,7 +74,8 @@ def login() -> 'html':
 	else:
 		""" Jeżeli urzytkownika nie ma w bazie """
 		saveName(request.form['user_name'], "Błąd", this_date)
-		return render_template('log_ok.html', the_title = 'Nie', the_log='Login', the_user_name = request.form['user_name'])
+		error_log = "niepoprawny nick lub hasło"
+		return render_template('login.html', the_title = 'Błąd wprowadzanych danych', the_log = 'Login', the_alert_user_name = error_log)
 	
 @app.route('/viewlog')
 def viewsLog() -> str:
@@ -121,10 +123,10 @@ def test() -> str:
 			
 			maps = []
 			for i in range(81):
-				maps.append('1')
+				maps.append('2')
 			for i in range(20):
 				rand = randint(0, 80)
-				maps[rand] = '2'
+				maps[rand] = '1'
 			for i in range(15):
 				rand = randint(0, 80)
 				maps[rand] = '3'

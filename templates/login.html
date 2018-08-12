@@ -6,9 +6,9 @@
 		<form method="POST" action="/login_UPP">
 			<legend><h1>Zaloguj się:</h1></legend>
 			<label for="user_name">User Name:</label>
-			<input type="text" name="user_name" id="user_name" /><span id="span_user_name"></span><br />
+			<input type="text" name="user_name" id="user_name" /><span class="red_span" id="span_user_name">{{ the_alert_user_name }}</span><br />
 			<label for="password">Password:</label>
-			<input type="password" name="password" id="password" /><span id="span_password"></span><br />
+			<input type="password" name="password" id="password" /><span class="red_span" id="span_password"></span><br />
 			<input type="submit" value="Login" id="submit_1"/>
 		</form>
 		Nie masz jeszcze u nas konta? Przejdź do <a href="/registration"><span class="gold">Registration</span></a>
