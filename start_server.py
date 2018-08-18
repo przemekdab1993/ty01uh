@@ -129,24 +129,24 @@ def test() -> str:
 				maps.append('2')
 			for i in range(20):
 				rand = randint(0, 80)
-				maps[rand] = '1'
+				maps[rand] = '3'
 			for i in range(15):
 				rand = randint(0, 80)
-				maps[rand] = '3'
+				maps[rand] = '4'
 			for i in range(10):
 				rand = randint(0, 80)
-				maps[rand] = '4'
+				maps[rand] = '1'
 			for rote in range(0, 80, 1):
 				_SQLX = """INSERT INTO fields_user (user_ID, krotka_ID, content_ID, counter) VALUES (%s, %s, %s, %s);"""
 				cursor.execute(_SQLX, (user_ID, rote, maps[rote] , '1'))
 		return "succces"
 	else:
 		return "failed"
-@app.route('/items')
-def viev_items() -> 'html':
+@app.route('/inventory')
+def viev_inventory() -> 'html':
 	""" STRONA MAGAZYNU PRZEDMIOTÓW """
-	def views() -> str:
-		return "Tak jesteś zalogowany"
+	def views() -> 'html':
+		return render_template('inventory.html', the_title = 'Inventory', the_log='Logout')
 	
 	return check_status(views)
 

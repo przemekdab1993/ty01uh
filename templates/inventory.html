@@ -1,0 +1,34 @@
+<!-- Strona z posiadanymi przedmiotami -->
+{% extends 'base.html' %}
+
+{% block header_X %}
+	 <link rel="stylesheet" href="static/css/style_game.css" type="text/css" />
+{% endblock %}
+
+{% block main_container %}
+
+	<div class="sorce_container">
+		<div id="inventory_container">
+			<div id="inventory_categories">
+				<ul>
+					<li id="cat_1">Owoce</li>
+					<li id="cat_2">Nasiona</li>
+					<li id="cat_3">Inne</li>
+					<li id="cat_4">Śmieci</li>
+				</ul>
+			</div>
+			<div id="inv_card">
+				<div class="inventory" id="inv_1"></div>
+				<div class="inventory" id="inv_2"></div>
+				<div class="inventory" id="inv_3"></div>
+				<div class="inventory" id="inv_4"></div>
+				<div class="inventory" id="inv_0">
+					<h2>Znajdujesz się w swoim magazynie. Po wybraniu odpowiedniej zakładki możesz przyjżeć się bliżej swoim posiadanym przedmiotom i zdecydować
+					co z nimi zrobić.</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script defer type="text/javascript" src="static/javascript/fun_inventory.js"></script>
+
+{% endblock %}
